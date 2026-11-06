@@ -1,6 +1,6 @@
 # AI-Powered Data Quality Checker
 
-A beginner-friendly data engineering project that uses Azure Databricks, PySpark, and a deployed model in Microsoft Foundry to validate a synthetic 10,000-row customer dataset and produce an AI-written summary of aggregate quality results.
+A beginner-friendly data engineering project that uses Azure Databricks, PySpark, and a deployed model in Microsoft Foundry(Phi-4-mini-instruct) to validate a synthetic 10,000-row customer dataset and produce an AI-written summary of aggregate quality results.
 
 The validation rules are deterministic. The model explains the resulting counts and suggests remediation steps; it does not decide whether individual rows pass, alter records, or delete data.
 
@@ -56,7 +56,7 @@ Delta table contents and customer-level data are stored in Databricks, not in th
    - Key: `azure-openai-endpoint`
    - Key: `azure-openai-api-key`
 
-   Configure these secrets in your workspace using your organization's approved process. Never put the endpoint or API key directly in the notebook or GitHub.
+   Configure these secrets in your workspace using your organization's approved process. Never put the endpoint or API key directly in the notebook .
 
 3. Confirm `deployment_name` in the notebook exactly matches the model deployment name in your Foundry resource.
 
@@ -74,7 +74,7 @@ The notebook writes these Delta tables:
 
 The notebook also calculates issue counts for the implemented checks before calling the model. The current report table schema stores the narrative and total/valid/invalid counts; it does not store each individual issue count as a separate column.
 
-To publish a result, prefer a concise Markdown summary containing aggregate counts and recommendations. Do not export customer-level records to GitHub.
+
 
 ## Expected results
 
@@ -95,7 +95,7 @@ These are expected values for the described sample dataset. Recalculate them if 
 - Keep API credentials in Databricks secrets; never commit credentials, secret values, or private endpoint details.
 - Send aggregate metrics to the model, not individual customer rows.
 - Review generated AI recommendations before using them. They are explanatory suggestions, not an approval to change or delete records.
-- Avoid committing raw data, Delta files, or customer-level output tables to GitHub.
+
 
 ## Current limitations
 
