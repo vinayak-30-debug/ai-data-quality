@@ -6,18 +6,7 @@ The validation rules are deterministic. The model explains the resulting counts 
 
 ## Architecture
 
-```mermaid
-flowchart LR
-    A[ Synthetic customer CSV ] --> B[ Unity Catalog volume ]
-    B --> C[ Azure Databricks and PySpark ]
-    C --> D{ Core validation rules }
-    D --> E[ Clean customer Delta table ]
-    D --> F[ Rejected customer Delta table with issue labels ]
-    D --> G[ Aggregate quality metrics ]
-    G --> H[ Microsoft Foundry deployed chat model ]
-    H --> I[ AI explanation and recommendations ]
-    I --> J[ AI quality report Delta table ]
-```
+![AI data quality project architecture](docs/architecture.png)
 
 Only aggregate metrics are sent to the model. The customer rows remain in Databricks.
 
